@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vehicle Details - Vehicle Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Rubik', sans-serif;
+      background: linear-gradient(to right, #dceefb, #f8e1e7);
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #34495e;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+
+    .card {
+      background-color: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+
+    .vehicle-image {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+
+    .info p {
+      margin: 8px 0;
+      font-size: 16px;
+      color: #555;
+    }
+
+    .info p i {
+      margin-right: 10px;
+      color: #2980b9;
+    }
+
+    .contact-form {
+      margin-top: 25px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    .contact-form button {
+      width: 100%;
+      margin-top: 15px;
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .contact-form button:hover {
+      background-color: #1e8449;
+    }
+
+    .success-box {
+      display: none;
+      background-color: #d4edda;
+      border-left: 5px solid #28a745;
+      color: #155724;
+      padding: 12px;
+      margin-top: 15px;
+      border-radius: 6px;
+      font-weight: bold;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .back-link {
+      text-align: center;
+      display: block;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #34495e;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .vehicle-image {
+        height: 220px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+
+      .info p {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🚘 Vehicle Details</h1>
+  </header>
+
+  <div class="container">
+    <!-- Vehicle Info -->
+    <div class="card" id="vehicleDetail">
+      <p>Loading vehicle details...</p>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="card">
+      <h2>📨 Contact Seller</h2>
+      <form id="contactForm" class="contact-form">
+        <input type="text" id="senderName" placeholder="Your Name" required>
+        <input type="email" id="senderEmail" placeholder="Your Email" required>
+        <textarea id="messageText" rows="4" placeholder="Your Message..." required></textarea>
+        <button type="submit">Send Message</button>
+        <div id="formStatus" class="success-box"></div>
+      </form>
+    </div>
+
+    <a class="back-link" href="dashboard.html">← Back to Dashboard</a>
+  </div>
+
+  <script>
+    // Load vehicle details
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    fetch(`http://localhost:5000/api/vehicles/${id}`)
+      .then(res => res.json())
+      .then(vehicle => {
+        const detailDiv = document.getElementById("vehicleDetail");
+        detailDiv.innerHTML = `
+          <img src="http://localhost:5000${vehicle.image_url}" class="vehicle-image" alt="${vehicle.title}">
+          <h2>${vehicle.title}</h2>
+          <div class="info">
+            <p><i class="fas fa-calendar-alt"></i><strong>Year:</strong> ${vehicle.year}</p>
+            <p><i class="fas fa-indian-rupee-sign"></i><strong>Price:</strong> ₹${vehicle.price}</p>
+            <p><i class="fas fa-map-marker-alt"></i><strong>Location:</strong> ${vehicle.location}</p>
+            <p><i class="fas fa-car-side"></i><strong>Type:</strong> ${vehicle.type}</p>
+            <p><i class="fas fa-clipboard-check"></i><strong>Condition:</strong> ${vehicle.condition}</p>
+            <p><i class="fas fa-align-left"></i><strong>Description:</strong><br>${vehicle.description}</p>
+          </div>
+        `;
+      })
+      .catch(err => {
+        document.getElementById("vehicleDetail").innerHTML = "<p>Vehicle not found.</p>";
+        console.error("Failed to load vehicle:", err);
+      });
+  </script>
+
+  <script>
+  document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const sender_name = document.getElementById("senderName").value;
+    const email = document.getElementById("senderEmail").value;
+    const message = document.getElementById("messageText").value;
+    const vehicle_id = new URLSearchParams(window.location.search).get("id");
+
+    fetch("http://localhost:5000/api/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ sender_name, email, message, vehicle_id })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.message) {
+        showPopup(); // ✅ show the custom popup box
+        document.getElementById("contactForm").reset();
+      }
+    })
+    .catch(err => {
+      console.error("Failed to send message:", err);
+      alert("❌ Something went wrong. Try again.");
+    });
+  });
+
+  function showPopup() {
+    const popup = document.createElement("div");
+    popup.innerHTML = `
+      <div style="
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        background: rgba(0,0,0,0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      ">
+        <div style="
+          background: white;
+          padding: 30px;
+          border-radius: 10px;
+          text-align: center;
+          max-width: 400px;
+          box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        ">
+          <h2 style="color: green;">📨 Message Sent Successfully!</h2>
+          <p>✅ Thank you for contacting the seller.</p>
+          <p>You can continue exploring vehicles or exit.</p>
+          <button onclick="this.closest('div').parentNode.remove()" style="
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+          ">Continue Browsing</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(popup);
+  }
+</script>
+
+
+</body>
+</html>

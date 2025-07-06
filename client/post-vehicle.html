@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Post Your Vehicle - Vehicle Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Rubik', sans-serif;
+      background: linear-gradient(to right, #e6f0ff, #fce3ec);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .form-wrapper {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: 500;
+      margin-top: 15px;
+      display: block;
+      color: #444;
+    }
+
+    .field-group {
+      display: flex;
+      align-items: center;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-top: 8px;
+      padding: 10px;
+      background: #f9f9f9;
+    }
+
+    .field-group i {
+      margin-right: 10px;
+      color: #555;
+    }
+
+    .field-group input,
+    .field-group select,
+    .field-group textarea {
+      border: none;
+      background: transparent;
+      width: 100%;
+      font-size: 14px;
+      outline: none;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 25px;
+      background: #2e86de;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background: #1e6ab7;
+    }
+
+    .back-link {
+      text-align: center;
+      display: block;
+      margin-top: 20px;
+      color: #2e86de;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    #imagePreview {
+      margin-top: 15px;
+      max-height: 180px;
+      border-radius: 10px;
+      object-fit: cover;
+      width: 100%;
+      display: none;
+    }
+
+    #popupBox {
+      display: none;
+      background-color: #dff0d8;
+      border-left: 5px solid #3c763d;
+      color: #3c763d;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: bold;
+      animation: fadein 0.6s;
+    }
+
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 500px) {
+      .form-wrapper {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-wrapper">
+    <h2>📤 Post Your Vehicle</h2>
+    <p class="subtitle">Upload details to list your vehicle for sale</p>
+
+    <form id="vehicleForm" enctype="multipart/form-data">
+      <label>Vehicle Title</label>
+      <div class="field-group">
+        <i class="fas fa-car"></i>
+        <input type="text" name="title" placeholder="e.g. Honda City 2019" required>
+      </div>
+
+      <label>Price (₹)</label>
+      <div class="field-group">
+        <i class="fas fa-indian-rupee-sign"></i>
+        <input type="number" name="price" required>
+      </div>
+
+      <label>Manufacture Year</label>
+      <div class="field-group">
+        <i class="fas fa-calendar-alt"></i>
+        <input type="number" name="year" required>
+      </div>
+
+      <label>Location</label>
+      <div class="field-group">
+        <i class="fas fa-map-marker-alt"></i>
+        <input type="text" name="location" required>
+      </div>
+
+      <label>Vehicle Type</label>
+      <div class="field-group">
+        <i class="fas fa-truck-pickup"></i>
+        <input type="text" name="type" placeholder="Car / Bike / SUV" required>
+      </div>
+
+      <label>Condition</label>
+      <div class="field-group">
+        <i class="fas fa-clipboard-check"></i>
+        <input type="text" name="condition" placeholder="Used / New" required>
+      </div>
+
+      <label>Description</label>
+      <div class="field-group">
+        <i class="fas fa-align-left"></i>
+        <textarea name="description" rows="3" placeholder="Short description..." required></textarea>
+      </div>
+
+      <label>Upload Image</label>
+      <div class="field-group">
+        <i class="fas fa-image"></i>
+        <input type="file" name="image" accept="image/*" id="imageInput" required>
+      </div>
+
+      <!-- Preview -->
+      <img id="imagePreview" alt="Image Preview"/>
+
+      <input type="hidden" name="seller_id" value="1" />
+
+      <button type="submit">🚗 Post Vehicle</button>
+      <div id="popupBox">Vehicle posted successfully!</div>
+    </form>
+
+    <a class="back-link" href="dashboard.html">← Back to Dashboard</a>
+  </div>
+
+  <script>
+    const form = document.getElementById('vehicleForm');
+    const popupBox = document.getElementById('popupBox');
+    const imageInput = document.getElementById('imageInput');
+    const preview = document.getElementById('imagePreview');
+
+    // Show preview
+    imageInput.addEventListener('change', function () {
+      const file = this.files[0];
+      if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = 'block';
+      } else {
+        preview.style.display = 'none';
+      }
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      fetch('http://localhost:5000/api/vehicles', {
+        method: 'POST',
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.message) {
+          popupBox.style.display = 'block';
+          popupBox.textContent = data.message;
+          form.reset();
+          preview.style.display = 'none';
+          setTimeout(() => {
+            popupBox.style.display = 'none';
+          }, 3000);
+        }
+      })
+      .catch(err => {
+        console.error('Error posting vehicle:', err);
+        popupBox.style.display = 'block';
+        popupBox.style.backgroundColor = '#f8d7da';
+        popupBox.style.borderLeft = '5px solid #a94442';
+        popupBox.style.color = '#a94442';
+        popupBox.textContent = 'Failed to post vehicle.';
+      });
+    });
+  </script>
+
+</body>
+</html>

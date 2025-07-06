@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Vehicle</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f8f9fa, #e3eaf2);
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #34495e;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 30px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 12px;
+      display: block;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    #status {
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>✏️ Edit Vehicle</h1>
+  </header>
+
+  <div class="container">
+    <form id="editForm">
+      <label>Title:</label>
+      <input type="text" name="title" id="title" required>
+
+      <label>Price:</label>
+      <input type="number" name="price" id="price" required>
+
+      <label>Year:</label>
+      <input type="number" name="year" id="year" required>
+
+      <label>Location:</label>
+      <input type="text" name="location" id="location" required>
+
+      <label>Type:</label>
+      <input type="text" name="type" id="type" required>
+
+      <label>Condition:</label>
+      <input type="text" name="condition" id="condition" required>
+
+      <label>Description:</label>
+      <textarea name="description" id="description" required></textarea>
+
+      <button type="submit">Update Vehicle</button>
+    </form>
+    <div id="status"></div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    // Fetch existing vehicle data
+    fetch(`http://localhost:5000/api/vehicles/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("title").value = data.title;
+        document.getElementById("price").value = data.price;
+        document.getElementById("year").value = data.year;
+        document.getElementById("location").value = data.location;
+        document.getElementById("type").value = data.type;
+        document.getElementById("condition").value = data.condition;
+        document.getElementById("description").value = data.description;
+      })
+      .catch(err => {
+        console.error("Error fetching vehicle:", err);
+      });
+
+    // Submit updated data
+    document.getElementById("editForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const updatedData = {
+        title: document.getElementById("title").value,
+        price: document.getElementById("price").value,
+        year: document.getElementById("year").value,
+        location: document.getElementById("location").value,
+        type: document.getElementById("type").value,
+        condition: document.getElementById("condition").value,
+        description: document.getElementById("description").value
+      };
+
+      fetch(`http://localhost:5000/api/vehicles/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(updatedData)
+      })
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("status").textContent = data.message;
+        })
+        .catch(err => {
+          console.error("Update failed:", err);
+          document.getElementById("status").textContent = "Update failed.";
+        });
+    });
+  </script>
+
+</body>
+</html>

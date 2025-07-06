@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - Second-Hand Vehicle Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Ubuntu', sans-serif;
+      background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-container {
+      background-color: white;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .login-container img {
+      width: 80px;
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      color: #34495e;
+      margin-bottom: 5px;
+    }
+
+    p.subtitle {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 25px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #2e86de;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1e6ab7;
+    }
+
+    .link {
+      display: block;
+      margin-top: 15px;
+      font-size: 14px;
+      color: #444;
+      text-decoration: none;
+    }
+
+    .link:hover {
+      color: #2e86de;
+    }
+
+    .message {
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .success {
+      color: green;
+    }
+
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <img src="https://cdn-icons-png.flaticon.com/512/744/744465.png" alt="Vehicle Logo" />
+    <h2>Welcome Back</h2>
+    <p class="subtitle">Login to explore trusted second-hand vehicles</p>
+
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+      <div id="loginMessage" class="message"></div>
+    </form>
+
+    <a href="signup.html" class="link">Don't have an account? Sign Up</a>
+    <a href="index.html" class="link">← Back to Home</a>
+  </div>
+
+ <script>
+  document.getElementById("loginForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const msg = document.getElementById("loginMessage");
+    msg.textContent = "";
+    msg.className = "message";
+
+    fetch("http://localhost:5000/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.message === "Login successful") {
+        msg.classList.add("success");
+        msg.textContent = "Login successful! Redirecting...";
+
+        localStorage.setItem("user", JSON.stringify(data.user));
+
+        setTimeout(() => {
+          if (data.user.role === "admin") {
+            window.location.href = "admin-dashboard.html"; // ✅ CORRECTED
+          } else if (data.user.role === "seller") {
+            window.location.href = "seller-dashboard.html";
+          } else {
+            window.location.href = "dashboard.html";
+          }
+        }, 1200);
+
+      } else {
+        msg.className = "message error";
+        msg.textContent = data.message || "Login failed. Try again.";
+      }
+    })
+    .catch(err => {
+      console.error("Login error:", err);
+      msg.className = "message error";
+      msg.textContent = "Something went wrong. Try again.";
+    });
+  });
+</script>
+
+
+</body>
+</html>
