@@ -36,8 +36,11 @@ A full-stack web application that allows users to **buy and sell second-hand veh
 ## 📂 Project Structure
 
 Vehicle-ecommerce-website/
+
 ├── client/ # Frontend files (HTML, CSS, JS)
+
 │ ├── index.html # Homepage
+
 │ ├── login.html # Login Page
 │ ├── signup.html # Signup Page
 │ ├── dashboard.html # Buyer Dashboard
