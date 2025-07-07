@@ -101,12 +101,14 @@ Make sure you have the following installed:
 
 ---
 
-### 📦 Step 1: Clone the Repository
+# 🚗 Vehicle Store - Second-Hand Vehicle E-Commerce Website
+
+## 📦 Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/Devisri4/Vehicle-ecommerce-website.git
-cd Vehicle-ecommerce-website
----
+git clone https://github.com/Devisri4/vehicle-ecommerce-website.git
+cd vehicle-ecommerce-website
+
 
 ##  📸Output Screenshots
 ## 🚘 Vehicle Store - Project Screenshots
