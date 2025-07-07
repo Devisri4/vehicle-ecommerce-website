@@ -110,7 +110,7 @@ git clone https://github.com/Devisri4/vehicle-ecommerce-website.git
 cd vehicle-ecommerce-website
 📸 Output Screenshots
 🏠 Home Page
-![Home Page](https://raw.githubusercontent.com/Devisri4/vehicle-ecommerce-website/master/assets/homepage.jng)
+![Home Page](https://raw.githubusercontent.com/Devisri4/vehicle-ecommerce-website/master/assets/homepage.jpg)
 
 
 
