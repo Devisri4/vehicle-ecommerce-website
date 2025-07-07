@@ -69,13 +69,13 @@ Vehicle-ecommerce-website/
 
 │ │ ├── vehicles.js # Vehicle APIs
 
-│ │ └── messages.js # Contact seller messages
+│ │ ├── messages.js # Contact seller messages
 
-| | └── admin.js # admin panel
+| | ├── admin.js # admin panel
 
 │ ├── uploads/ # Uploaded images (Multer)
 
-│ └── middelare/ 
+│ ├── middelare/ 
 
 │ │ ├── upload.js # uploads API
 
@@ -103,75 +103,64 @@ Make sure you have the following installed:
 
 # 🚗 Vehicle Store - Second-Hand Vehicle E-Commerce Website
 
-## 📦 Step 1: Clone the Repository
 
-```bash
-git clone https://github.com/Devisri4/vehicle-ecommerce-website.git
-cd vehicle-ecommerce-website
-📸 Output Screenshots
-🏠 Home Page
-![Home Page](https://raw.githubusercontent.com/Devisri4/vehicle-ecommerce-website/master/assets/homepage.jpg)
+---
 
+## ⚙️ Installation Steps
 
+bash
+### Step 1: Clone the repository
+git clone https://github.com/your-username/Vehicle-ecommerce-website.git
 
+### Step 2: Navigate into project
+cd Vehicle-ecommerce-website
 
-✍️ Sign Up Page
+### Step 3: Install backend dependencies
+cd server
+npm install
 
+### Step 4: Start backend server
+node index.js
 
-🔐 Login Page
+### Step 5: Open frontend
+Open index.html inside the /client folder in browser
 
+####🛑 Note: Make sure MySQL is running locally and you have imported the database.
 
-🛒 Dashboard with Listings
+---
 
+### 📸 Output Screenshots
+All screenshots are located in the client/assets/ folder. Here are the key output files:
 
+| Page             | Screenshot File                                      |
+| ---------------- | ---------------------------------------------------- |
+| Home             | `homepage.jpg`                                       |
+| Sign Up          | `signup.png`                                         |
+| Login            | `login.png`                                          |
+| Buyer Dashboard  | `dashboard1.png`, `dashboard2.png`, `dashboard3.png` |
+| Post Vehicle     | `postvehicle.png`, `postvehicle2.png`                |
+| Vehicle Details  | `vehicledetil.jpg`, `vehicledetail2.jpg`             |
+| Seller Dashboard | `seller1.png`, `seller2.png`, ...                    |
+| Admin Panel      | `admin1.png`, `admin2.png`                           |
 
+You can open these manually from the assets folder to view UI output.
 
-🚘 Post a Vehicle
-Sellers can list vehicles with title, price, year, location, image, etc.
+### ✅ Conclusion
+This project demonstrates a complete second-hand vehicle e-commerce platform with essential features like vehicle posting, browsing, seller contact, admin management, and role-based dashboards. It’s responsive and suitable for real-world scenarios.
 
+### 💡 Future Enhancements
+💳 Integrate a payment gateway
 
+🔍 Advanced search & filters
 
-📄 Vehicle Detail with Contact Seller Form
+🖼️ Multiple images per vehicle
 
+✅ Seller verification system
 
+📊 Admin analytics dashboard
 
-📨 Seller Dashboard
-Shows all vehicles posted by the seller with options to edit or delete each listing.
+## 🙋‍♀️ Author
 
+👩‍💻 **Devi Sri**  
 
-
-
-
-🧑‍💼 Admin Panel
-
-
-
-✅ Conclusion
-This project demonstrates a complete second-hand vehicle e-commerce website with essential features like:
-
-🚗 Vehicle posting and browsing
-
-✉️ Seller contact form
-
-🧑‍💼 Admin panel
-
-👥 Role-based dashboards (Buyer/Seller/Admin)
-
-📱 Responsive UI/UX
-
-It’s designed for real-world use and future scaling.
-
-💡 Future Enhancements
-💳 Add payment gateway integration
-
-🔍 Enable advanced search and filter options
-
-🖼️ Add image gallery per vehicle
-
-✅ Enable seller verification
-
-📊 Add admin analytics dashboard
-
-👩‍💻 Author
-M. Devi Sri
-🔗 GitHub Profile
+🔗 [GitHub Profile](https://github.com/devisri4)
