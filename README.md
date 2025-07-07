@@ -104,7 +104,7 @@ Make sure you have the following installed:
 ### 📦 Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/Vehicle-ecommerce-website.git
+git clone https://github.com/Devisri4/Vehicle-ecommerce-website.git
 cd Vehicle-ecommerce-website
 ---
 
