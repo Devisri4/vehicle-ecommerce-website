@@ -112,7 +112,7 @@ cd Vehicle-ecommerce-website
 ## 🚘 Vehicle Store - Project Screenshots
 
 ### 🏠 Home Page
-![Home](./assets/homepage.jpg)
+![Home](/assets/homepage.jpg)
 
 ### ✍️ Sign Up Page
 ![Sign Up](./assets/signup.png)
