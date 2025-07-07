@@ -108,49 +108,58 @@ Make sure you have the following installed:
 ```bash
 git clone https://github.com/Devisri4/vehicle-ecommerce-website.git
 cd vehicle-ecommerce-website
+📸 Output Screenshots
+🏠 Home Page
+![Home Page](https://raw.githubusercontent.com/Devisri4/vehicle-ecommerce-website/master/assets/homepage.jng)
 
 
-##  📸Output Screenshots
-## 🚘 Vehicle Store - Project Screenshots
 
-### 🏠 Home Page
-![Home](/assets/homepage.jpg)
 
-### ✍️ Sign Up Page
-![Sign Up](./assets/signup.png)
+✍️ Sign Up Page
 
-### 🔐 Login Page
-![Login](./assets/login.png)
 
-### 🛒 Dashboard with Listings
-![Dashboard 1](./assets/dashboard1.png)
-![Dashboard 2](./assets/dashboard2.png)
-![Dashboard 3](./assets/dashboard3.png)
+🔐 Login Page
 
-### 🚘 **Post a Vehicle**
-  - Sellers can list vehicles with title, price, year, location, image, etc.
-  ![post 1](./assets/postvehicle.png)
-  ![post 2](./assets/postvehicle2.png)
 
-### 📄 Vehicle Detail with Contact Seller Form
-![Vehicle Details](./assets/vehicledetil.jpg)
-![Vehicle Details](./assets/vehicledetail2.jpg)
+🛒 Dashboard with Listings
 
-### 📨 **Seller dashboard**
-    -Shows all vehicles posted by the seller with options to edit or delete each listing.
-  ![seller 1](./assets/seller1.png)
-  ![seller 2](./assets/seller2.png) 
-  ![seller 3](./assets/seller3.png)
-  ![seller 4](./assets/seller4.png)   
-  
-### 🧑‍💼 Admin Panel
-![Admin Dashboard](./assets/admin1.png)
-![Admin Dashboard2](./assets/admin2.png)
 
----
+
+
+🚘 Post a Vehicle
+Sellers can list vehicles with title, price, year, location, image, etc.
+
+
+
+📄 Vehicle Detail with Contact Seller Form
+
+
+
+📨 Seller Dashboard
+Shows all vehicles posted by the seller with options to edit or delete each listing.
+
+
+
+
+
+🧑‍💼 Admin Panel
+
+
 
 ✅ Conclusion
-This project demonstrates a complete second-hand vehicle e-commerce website with essential features like vehicle posting, browsing, seller contact, admin management, and role-based dashboards. It’s responsive and suitable for real-world scenarios.
+This project demonstrates a complete second-hand vehicle e-commerce website with essential features like:
+
+🚗 Vehicle posting and browsing
+
+✉️ Seller contact form
+
+🧑‍💼 Admin panel
+
+👥 Role-based dashboards (Buyer/Seller/Admin)
+
+📱 Responsive UI/UX
+
+It’s designed for real-world use and future scaling.
 
 💡 Future Enhancements
 💳 Add payment gateway integration
@@ -161,9 +170,8 @@ This project demonstrates a complete second-hand vehicle e-commerce website with
 
 ✅ Enable seller verification
 
-📊 Add admin analytics panel
+📊 Add admin analytics dashboard
 
 👩‍💻 Author
 M. Devi Sri
 🔗 GitHub Profile
-(https://github.com/devisri4)
