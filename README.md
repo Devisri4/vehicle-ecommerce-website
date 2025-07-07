@@ -71,7 +71,7 @@ Vehicle-ecommerce-website/
 
 │ │ ├── messages.js # Contact seller messages
 
-| | ├── admin.js # admin panel
+│ │ ├── admin.js # admin panel
 
 │ ├── uploads/ # Uploaded images (Multer)
 
@@ -125,7 +125,7 @@ node index.js
 ### Step 5: Open frontend
 Open index.html inside the /client folder in browser
 
-####🛑 Note: Make sure MySQL is running locally and you have imported the database.
+**🛑 Note: Make sure MySQL is running locally and you have imported the database.**
 
 ---
 
@@ -164,3 +164,8 @@ This project demonstrates a complete second-hand vehicle e-commerce platform wit
 👩‍💻 **Devi Sri**  
 
 🔗 [GitHub Profile](https://github.com/devisri4)
+
+## 📄 License
+
+This project is licensed under the [MIT License](./LICENSE).
+
