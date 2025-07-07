@@ -56,19 +56,33 @@ Vehicle-ecommerce-website/
 │ ├── post-vehicle.html # Seller post form
 
 ├── server/ # Backend (Node.js + Express)
+
 │ ├── index.js # Main server file
+
 │ ├── config/
+
 │ │ └── db.js # MySQL DB connection config
+
 │ ├── routes/
+
 │ │ ├── auth.js # Signup/login API
+
 │ │ ├── vehicles.js # Vehicle APIs
+
 │ │ └── messages.js # Contact seller messages
+
 | | └── admin.js # admin panel
+
 │ ├── uploads/ # Uploaded images (Multer)
+
 │ └── middelare/ 
+
 │ │ ├── upload.js # uploads API
+
 ├── .gitignore # Ignore node_modules, uploads etc.
+
 ├── README.md # Project documentation
+
 └── package.json # Node dependencies and scripts
 
 ## 🚀 Installation & Setup Guide
@@ -76,7 +90,6 @@ Vehicle-ecommerce-website/
 This guide will help you run the Vehicle E-Commerce Website locally on your system. The project includes a frontend built with HTML/CSS/JS and a backend using Node.js, Express, and MySQL.
 
 ---
-
 ### 🧰 Prerequisites
 
 Make sure you have the following installed:
