@@ -42,15 +42,19 @@ Vehicle-ecommerce-website/
 │ ├── index.html # Homepage
 
 │ ├── login.html # Login Page
+
 │ ├── signup.html # Signup Page
+
 │ ├── dashboard.html # Buyer Dashboard
+
 │ ├── seller-dashboard.html # Seller Dashboard
+
 │ ├── admin-dashboard.html # Admin Panel
+
 │ ├── vehicle-detail.html # Vehicle detail + Contact seller
+
 │ ├── post-vehicle.html # Seller post form
-│ ├── css/ # Optional folder for external CSS
-│ └── screenshots/ # Project screenshots for README
-│
+
 ├── server/ # Backend (Node.js + Express)
 │ ├── index.js # Main server file
 │ ├── config/
@@ -59,9 +63,10 @@ Vehicle-ecommerce-website/
 │ │ ├── auth.js # Signup/login API
 │ │ ├── vehicles.js # Vehicle APIs
 │ │ └── messages.js # Contact seller messages
+| | └── admin.js # admin panel
 │ ├── uploads/ # Uploaded images (Multer)
-│ └── controllers/ # (Optional) Logic separation
-│
+│ └── middelare/ 
+│ │ ├── upload.js # uploads API
 ├── .gitignore # Ignore node_modules, uploads etc.
 ├── README.md # Project documentation
 └── package.json # Node dependencies and scripts
